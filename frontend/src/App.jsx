@@ -12,6 +12,7 @@ function App() {
     <div>Hey there </div>
     <div>Satwick is snoring</div>
     <div>In Master</div>
+    <div>In the master branch</div>
     </>
   )
 }
