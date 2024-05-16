@@ -1,8 +1,26 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# LeftOverLove <3
 
-Currently, two official plugins are available:
+A brief description of what this project does and who it's for
+# Proposed Features
+- Donor and Recipient will have different dashboards.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Once donor and recipient are matched, they can chat with each other.
+
+- View nearest donors.
+
+- Reviews and feedback
+
+- Commercial value
+
+# Tech Stack
+
+- Reactjs
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- zod
+- jwt 
+- Google Map API
+
