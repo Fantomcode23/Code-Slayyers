@@ -32,16 +32,15 @@ const recipientSchema=mongoose.model({
         type:String,
         required:true
     },
-    location:[geoSchema],
     password:{
         type:String,
         required:true
-    },
-    donationrecieved:[orderSchema],
-    recipientuid:{
-        type:Number,
-        required:true
     }
+    // donationrecieved:[orderSchema],
+    // recipientuid:{
+    //     type:Number,
+    //     required:true
+    // }
 })
 
 const Recipient=mongoose.model("Recipient",recipientSchema);

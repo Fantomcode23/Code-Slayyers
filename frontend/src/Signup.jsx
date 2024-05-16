@@ -53,6 +53,7 @@ function Signup() {
                             className="form-control rounded-0"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            
                         />
                     </div>
                     <button type="submit" className="btn btn-success w-100 rounded-0">Register</button>
