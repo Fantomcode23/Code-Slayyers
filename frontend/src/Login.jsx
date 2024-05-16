@@ -9,11 +9,15 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5173/login', { email, password })
+        axios.post('http://localhost:3002/api/auth/login', { email, password })
             .then(result => {
                 console.log(result);
-                if (result.data === 'Success') {
-                    navigate('/dashboard');
+                const { token, role } = result.data;
+                localStorage.setItem('token', token);
+                if (role === 'donor') {
+                    navigate('/donor-dashboard');
+                } else if (role === 'recipient') {
+                    navigate('/recipient-dashboard');
                 }
             })
             .catch(error => {
