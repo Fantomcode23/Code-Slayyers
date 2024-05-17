@@ -1,11 +1,27 @@
-
 const mongoose = require('mongoose');
 
-const supplySchema = new mongoose.Schema({
-    category: { type: String, required: true },
-    itemName: { type: String, required: true },
-    quantity: { type: Number, required: true },
-    recipientId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+const SupplySchema = new mongoose.Schema({
+    recipientId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    itemName: {
+        type: String,
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true
+    },
+    expiryDate: {
+        type: Date,
+        required: false
+    }
 });
 
-module.exports = mongoose.model('Supply', supplySchema);
+module.exports = mongoose.model('Supply', SupplySchema);

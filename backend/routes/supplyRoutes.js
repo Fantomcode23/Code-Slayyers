@@ -4,11 +4,12 @@ const router = express.Router();
 const Supply = require('../database/Supply');
 const Donation = require('../database/ordersSchema');
 const User = require('../database/User');
-const authMiddleware=require("../authMiddleware");
+const authMiddleware = require('../authMiddleware');
+
 // Route to request supplies
-router.use(authMiddleware);
-router.post('/supplies', async (req, res) => {
-    const { recipientId, category, itemName, quantity, expiryDate } = req.body;
+router.post('/supplies', authMiddleware, async (req, res) => {
+    const { category, itemName, quantity, expiryDate } = req.body;
+    const recipientId = req.userId;
 
     try {
         const newSupply = new Supply({
@@ -26,9 +27,8 @@ router.post('/supplies', async (req, res) => {
     }
 });
 
-
 // Route to get supplies for a recipient
-router.get('/supplies', async (req, res) => {
+router.get('/supplies', authMiddleware, async (req, res) => {
     const recipientId = req.userId;
 
     try {
@@ -41,8 +41,7 @@ router.get('/supplies', async (req, res) => {
 });
 
 // Route to find matched donations
-// Route to find matched donations
-router.get('/matches', async (req, res) => {
+router.get('/supplies/matches', authMiddleware, async (req, res) => {
     const recipientId = req.userId;
 
     try {
@@ -58,6 +57,10 @@ router.get('/matches', async (req, res) => {
 
             for (const donation of matchedDonations) {
                 const donor = await User.findById(donation.donorId);
+                if (!donor) {
+                    console.warn(`Donor not found for donation ID: ${donation._id}`);
+                    continue; // Skip this iteration if donor is not found
+                }
                 matches.push({
                     ...donation._doc,
                     donorName: donor.name
@@ -71,6 +74,5 @@ router.get('/matches', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
-
 
 module.exports = router;
