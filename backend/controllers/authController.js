@@ -1,6 +1,9 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../database/User');
+// const Donation = require('../database/ordersSchema');
+
+
 
 exports.signup = async (req, res) => {
     const { name, email, password, address, role, uniqueId } = req.body;
@@ -33,7 +36,7 @@ exports.login = async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
-        const token = jwt.sign({ userId: user._id, role: user.role }, 'your_jwt_secret', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id, role: user.role }, 'Harsha@123', { expiresIn: '1h' });
         res.json({ token, role: user.role });
     } catch (error) {
         console.error(error);

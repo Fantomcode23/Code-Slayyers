@@ -1,26 +1,12 @@
-const mongoose=require("mongoose");
-const { Schema } = mongoose;
+const mongoose = require('mongoose');
 
-const orderSchema=mongoose.model({
-    recId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Recipient'
-    },
-    donorId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Donor'
-    },
-    category:{
-        type:String,
-        required:true
-    },
-    itemname:String,
-    qty:Number,
-    expiryDate:Date,
-    orderDate:Date
-    
+const DonationSchema = new mongoose.Schema({
+    donor: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    category: { type: String, required: true },
+    itemName: { type: String, required: true },
+    quantity: { type: Number, required: true },
+    expiryDate: { type: Date, required: true },
+    createdAt: { type: Date, default: Date.now },
+});
 
-})
-
-const orders=mongoose.model("Orders",orderSchema);
-module.exports=orders;
+module.exports = mongoose.model('Donation', DonationSchema);

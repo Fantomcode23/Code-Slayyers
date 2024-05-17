@@ -15,7 +15,7 @@ function Login() {
                 const { token, role } = result.data;
                 localStorage.setItem('token', token);
                 if (role === 'donor') {
-                    navigate('/donor-dashboard');
+                    navigate('/dashboard');
                 } else if (role === 'recipient') {
                     navigate('/recipient-dashboard');
                 }
